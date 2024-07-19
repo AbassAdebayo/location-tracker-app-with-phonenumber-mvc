@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.container {
+    margin-top: 5%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-control {
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#map {
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.navbar {
+    background: linear-gradient(135deg, #ff4081, #81d4fa);
+    box-shadow: 0 0 20px rgba(255, 64, 129, 0.5), 0 0 20px rgba(129, 212, 250, 0.5);
+    animation: sparkle 1.5s infinite alternate;
+}
+
+@keyframes sparkle {
+    0% {
+        box-shadow: 0 0 20px rgba(255, 64, 129, 0.5), 0 0 20px rgba(129, 212, 250, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 30px rgba(255, 64, 129, 0.8), 0 0 30px rgba(129, 212, 250, 0.8);
+    }
+}
+
+.nav-link, .navbar-brand {
+    color: white !important;
+}
+
+.colorful-link {
+    position: relative;
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white !important;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, #ff4081, #81d4fa);
+    border-radius: 10px;
+    transition: transform 0.2s, background 0.5s;
+}
+
+.colorful-link:hover {
+    transform: scale(1.1);
+    background: linear-gradient(45deg, #81d4fa, #ff4081);
+}
+
+.nav-item:nth-child(1) .colorful-link {
+    background: linear-gradient(45deg, #ff6f00, #ffcc80);
+}
+
+.nav-item:nth-child(2) .colorful-link {
+    background: linear-gradient(45deg, #ab47bc, #e1bee7);
+}
+
+.nav-item:nth-child(3) .colorful-link {
+    background: linear-gradient(45deg, #26c6da, #80deea);
+}
+
+.nav-item:nth-child(4) .colorful-link {
+    background: linear-gradient(45deg, #8bc34a, #c5e1a5);
+}

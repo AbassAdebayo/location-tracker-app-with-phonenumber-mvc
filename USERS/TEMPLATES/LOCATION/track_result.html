@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Track Result</h2>
+{% if data %}
+    <p><strong>Phone Number:</strong> {{ data.phone }}</p>
+    <p><strong>Carrier:</strong> {{ data.carrier }}</p>
+    <p><strong>Line Type:</strong> {{ data.type }}</p>
+
+    <!-- Embed Leaflet Map -->
+    <div id="map" style="height: 400px; width: 100%;"></div>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var map = L.map('map').setView([{{ data.latitude }}, {{ data.longitude }}], 13);  // Initialize the map with the location data
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            L.marker([{{ data.latitude }}, {{ data.longitude }}]).addTo(map)
+                .bindPopup('Location: {{ data.detailed_location }}')
+                .openPopup();
+        });
+    </script>
+    <div id="location-details">
+        <p><strong>Location:</strong> {{ data.detailed_location }}</p>
+        <p><strong>Latitude:</strong> {{ data.latitude }}</p>
+        <p><strong>Longitude:</strong> {{ data.longitude }}</p>
+    </div>
+{% else %}
+    <p>No data available.</p>
+{% endif %}
+<a href="{% url 'track' %}">Track another</a>
+{% endblock %}
