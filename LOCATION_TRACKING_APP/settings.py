@@ -8,14 +8,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Security settings
 SECRET_KEY = 'your-secret-key'
-ABSTRACT_API_KEY = ''
-OPENCAGE_API_KEY = ''
-IPINFO_API_TOKEN = ''
-TWILIO_ACCOUNT_SID = ''
-TWILIO_AUTH_TOKEN = ''
+# ABSTRACT_API_KEY = ''
+# OPENCAGE_API_KEY = ''
+# IPINFO_API_TOKEN = ''
+# TWILIO_ACCOUNT_SID = ''
+# TWILIO_AUTH_TOKEN = ''
+
+IPINFO_API_TOKEN = os.getenv('IPINFO_API_TOKEN')
+ABSTRACT_API_KEY = os.getenv('ABSTRACT_API_KEY')
 
 DEBUG = True  # Set to False in production
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'your-vercel-domain.vercel.app',
+    '127.0.0.1',
+    'localhost',
+]
 
 INSTALLED_APPS = [
     'django.contrib.auth',
@@ -52,6 +59,9 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
 SESSION_COOKIE_AGE = 3600  # 1 hour
 
+X_FRAME_OPTIONS = 'DENY'
+SECURE_SSL_REDIRECT = True
+
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 # Set the session to expire on browser close
@@ -75,14 +85,25 @@ TEMPLATES = [
 ]
 
 # Database configuration
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'location_tracking_db',
+#         'USER': 'track_app_user',
+#         'PASSWORD': 'DefinedCode',
+#         'HOST': 'localhost',  
+#         'PORT': '3306', 
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'location_tracking_db',
-        'USER': 'track_app_user',
-        'PASSWORD': 'DefinedCode',
-        'HOST': 'localhost',  
-        'PORT': '3306', 
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT', '3306'),
     }
 }
 
