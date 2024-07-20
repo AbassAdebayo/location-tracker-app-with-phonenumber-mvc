@@ -16,6 +16,7 @@ SECRET_KEY = 'your-secret-key'
 # TWILIO_ACCOUNT_SID = ''
 # TWILIO_AUTH_TOKEN = ''
 
+
 IPINFO_API_TOKEN = os.getenv('IPINFO_API_TOKEN')
 ABSTRACT_API_KEY = os.getenv('ABSTRACT_API_KEY')
 
