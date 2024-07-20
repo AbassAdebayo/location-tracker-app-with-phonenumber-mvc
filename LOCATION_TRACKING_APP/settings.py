@@ -17,7 +17,9 @@ SECRET_KEY = 'your-secret-key'
 IPINFO_API_TOKEN = os.getenv('IPINFO_API_TOKEN')
 ABSTRACT_API_KEY = os.getenv('ABSTRACT_API_KEY')
 
-DEBUG = True  # Set to False in production
+# Set to False in production
+DEBUG = False
+
 ALLOWED_HOSTS = [
     'your-vercel-domain.vercel.app',
     '127.0.0.1',
