@@ -1,5 +1,7 @@
 import os
 from pathlib import Path
+import pymysql
+pymysql.install_as_MySQLdb()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,7 +23,7 @@ ABSTRACT_API_KEY = os.getenv('ABSTRACT_API_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'ilocation-tracker-gnbcz6usq-adebayo-abass-projects.vercel.app',
+    'ilocation-tracker-g7ku53xq5-adebayo-abass-projects.vercel.app',
     '127.0.0.1',
     'localhost',
 ]
@@ -106,6 +108,9 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT'),
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        },
     }
 }
 
