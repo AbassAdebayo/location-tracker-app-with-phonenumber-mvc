@@ -24,7 +24,7 @@ ABSTRACT_API_KEY = os.getenv('ABSTRACT_API_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'ilocation-tracker-g7ku53xq5-adebayo-abass-projects.vercel.app',
+    'ilocation-tracker-app.vercel.app',
     '127.0.0.1',
     'localhost',
 ]
