@@ -29,6 +29,8 @@ ALLOWED_HOSTS = [
     'localhost',
 ]
 
+#ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,7 +40,8 @@ INSTALLED_APPS = [
     'USERS',
     'LOCATION',
     'channels',
-    'rest_framework'
+    'rest_framework',
+    'sslserver',
 ]
 
 CHANNEL_LAYERS = {
