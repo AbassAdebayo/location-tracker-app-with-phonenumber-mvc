@@ -1,9 +1,11 @@
 import os
-from pathlib import Path
+import logging
 import pymysql
 pymysql.install_as_MySQLdb()
 
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -21,7 +23,7 @@ IPINFO_API_TOKEN = os.getenv('IPINFO_API_TOKEN')
 ABSTRACT_API_KEY = os.getenv('ABSTRACT_API_KEY')
 
 # Set to False in production
-DEBUG = False
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [
     'ilocation-tracker-app.vercel.app',
@@ -92,6 +94,7 @@ TEMPLATES = [
     },
 ]
 
+logger.info('Setting up database configuration.')
 # Database configuration
 # DATABASES = {
 #     'default': {
@@ -117,6 +120,7 @@ DATABASES = {
         },
     }
 }
+logger.info(f'Database settings: {DATABASES["default"]}')
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
