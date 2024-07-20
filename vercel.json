@@ -16,7 +16,7 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "LOCATION/wsgi.py"
+        "dest": "LOCATION_TRACKING_APP/wsgi.py"
       }
     ]
   }
