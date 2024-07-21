@@ -1,23 +1,27 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "manage.py",
-        "use": "@vercel/python"
-      },
-      {
-        "src": "LOCATION_TRACKING_APP/wsgi.py",
-        "use": "@vercel/python",
-        "config": {
-          "maxLambdaSize": "15mb"
-        }
+  "version": 2,
+  "builds": [
+    {
+      "src": "LOCATION_TRACKING_APP/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "50mb" }
+    },
+    {
+      "src": "LOCATION_TRACKING_APP/settings.py",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "staticfiles"
       }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "LOCATION_TRACKING_APP/wsgi.py"
-      }
-    ]
-  }
-  
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "LOCATION_TRACKING_APP/wsgi.py"
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import os
 import logging
 import pymysql
 pymysql.install_as_MySQLdb()
+import secrets
 
 
 logging.basicConfig(level=logging.INFO)
@@ -11,7 +12,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Security settings
-SECRET_KEY = 'your-secret-key'
+SECRET_KEY = secrets.token_urlsafe(50)
 # ABSTRACT_API_KEY = ''
 # OPENCAGE_API_KEY = ''
 # IPINFO_API_TOKEN = ''
@@ -25,11 +26,7 @@ ABSTRACT_API_KEY = os.getenv('ABSTRACT_API_KEY')
 # Set to False in production
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = [
-    'ilocation-tracker-app.vercel.app',
-    '127.0.0.1',
-    'localhost',
-]
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'ilocation-tracker-app.vercel.app,127.0.0.1,localhost').split(',')
 
 #ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
@@ -70,7 +67,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 SESSION_COOKIE_AGE = 3600  # 1 hour
 
 X_FRAME_OPTIONS = 'DENY'
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
@@ -114,12 +111,16 @@ DATABASES = {
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        },
+        'PORT': os.getenv('DB_PORT', '3306'),
     }
 }
+
+print(f"DB_NAME: {os.getenv('DB_NAME')}"),
+print(f"DB_USER: {os.getenv('DB_USER')}"),
+print(f"DB_PASSWORD: {os.getenv('DB_PASSWORD')}"),
+print(f"DB_HOST: {os.getenv('DB_HOST')}"),
+print(f"DB_PORT': {os.getenv('DB_PORT', '3306')}"),
+
 logger.info(f'Database settings: {DATABASES["default"]}')
 
 # Password validation
@@ -148,6 +149,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # WSGI application
 WSGI_APPLICATION = 'LOCATION_TRACKING_APP.wsgi.application'
